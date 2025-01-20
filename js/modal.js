@@ -1,5 +1,6 @@
 /*****************************************
 *	Gestion des fenêtres modales
+*   ----------------------------
 *	Auteur 		: Dakin Quelia
 *	Version 	: 1.0.0. 
 *****************************************/
@@ -7,6 +8,8 @@ class Modal
 {
     /**
     *   Le constructeur
+    * 
+    *   @return {void}
     **/
     constructor()
     {
@@ -20,6 +23,8 @@ class Modal
 
     /**
     *   Cette méthode initialise nos fenêtres
+    * 
+    *   @return {void}
     **/
     Init()
     {
@@ -60,7 +65,10 @@ class Modal
 
     /**
     *   Cette méthode permet d'ouvrir la fenêtre modale.
-    *   @param {object} event
+    * 
+    *   @param {object} event                                           Evènement
+    * 
+    *   @return {void}
     **/
     async OpenModal(event)
     {
@@ -97,11 +105,14 @@ class Modal
 
     /**
     *   Cette méthode permet d'ouvrir une fenêtre modale avec une URL ou une page. 
-    *   @param {string} url
+    * 
+    *   @param {string} url                                             URL de la fenêtre
+    * 
+    *   @return {void}
     **/
     async LoadModal(url)
     {
-       const target = '#' + url.split('#')[1];
+       const target = '#' + URL.split('#')[1];
        const existingmodal = document.querySelector(target);
 
        if (existingmodal !== null) 
@@ -109,7 +120,7 @@ class Modal
            return existingmodal;
        }
 
-       const page = await fetch(url).then(response => response.text());
+       const page = await fetch(URL).then(response => response.text());
        const element = document.createRange().createContextualFragment(page).querySelector(target);
 
        if (element === null)
@@ -124,11 +135,14 @@ class Modal
 
     /**
     *   Créer une fenêtre modale
-    *   @param {object} data
+    * 
+    *   @param {object} data                                            Données de la fenêtre
+    * 
+    *   @return {void}
     **/
     Createmodal(data)
     {
-        this.html = `
+        this.HTML = `
             <div id="${data.id}" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none">
               <div class="modal-wrapper" id="modalstop">
                   <div class="modal-header">
@@ -146,12 +160,15 @@ class Modal
             </div>
         `;
 
-        document.body.appendChild(this.html);
+        document.body.appendChild(this.HTML);
     }
 
     /**
     *   Cette méthode permet de fermer la fenêtre modale. 
-    *   @param {object} event
+    * 
+    *   @param {object} event                                       Evènement
+    *   
+    *   @return {void}
     **/
     CloseModal(event)
     {
@@ -177,6 +194,8 @@ class Modal
 
     /**
     *   Cette méthode permet de masquer la fenêtre modale.
+    * 
+    *   @return {void}
     **/
     HideModal(modal) 
     {
@@ -187,7 +206,10 @@ class Modal
 
     /**
     *   Cette méthode permet d'arrêter la propagation.
-    *   @param {object} event
+    * 
+    *   @param {object} event                                       Evènement
+    *
+    *   @return {void}
     **/
     StopPropagation(event)
     {
@@ -196,7 +218,10 @@ class Modal
 
     /** 
     *   Cette méthode permet de gérer le focus sur la fenêtre modale.
-    *   @param {event} event 
+    * 
+    *   @param {object} event                                       Evènement
+    * 
+    *   @return {void}
     **/
     FocusModal(event)
     {
@@ -227,9 +252,12 @@ class Modal
     }
 
     /**
-    *   Afficher les erreurs en console
-    *   @param {object} error 
-    *   @param {string} explicit 
+    *   Cette méthode permet d'afficher les erreurs en console.
+    * 
+    *   @param {object} error                                           L'objet de l'erreur
+    *   @param {string} explicit                                        Explict ou Inexplicit
+    * 
+    *   @return {void}
     **/
     PrintError (error, explicit) 
     {
